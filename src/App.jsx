@@ -11,11 +11,20 @@ function App() {
   const [isDark, setIsDark] = useState(true);
   const url = "https://restcountries.com/v3.1/all";
   const [countries, setCountries] = useState([]);
+  const [isLoading,setIsLoading]=useState(false)
 
   useEffect(() => {
+    setIsLoading(true); // Start loading
     fetch(url)
       .then(response => response.json())
-      .then(data => setCountries(data));
+      .then(data => {
+        setCountries(data);
+        setIsLoading(false); // Data has loaded
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Stop loading in case of error
+      });
   }, []);
 
   useEffect(() => {
@@ -32,8 +41,8 @@ function App() {
     <Router>
       <Header isDark={isDark} setIsDark={setIsDark} />
       <Routes>
-        <Route path="/" element={<Countries isDark={isDark} countries={countries} />} />
-        <Route path="/country/:countryName" element={<CountryInfo isDark={isDark} countries={countries} />} />
+        <Route path="/" element={<Countries isLoading={isLoading} isDark={isDark} countries={countries} />} />
+        <Route path="/country/:countryName" element={<CountryInfo isLoading={isLoading}  isDark={isDark} countries={countries} />} />
       </Routes>
     </Router>
   )
