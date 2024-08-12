@@ -8,7 +8,7 @@ import Header from "./compenents/Header";
 
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const url = "https://restcountries.com/v3.1/all";
   const [countries, setCountries] = useState([]);
 

@@ -14,8 +14,8 @@ const CountryInfo = ({ isDark, countries }) => {
             <div className='px-[100px] py-[20px] md:px-4 md:py-4  '>
                 <Link className={`px-3 py-2 rounded-lg h-8 w-[100px] flex gap-2 items-center font-semibold font-sans text-lg ${isDark? "bg-dark-blue hover:bg-very-dark-blue text-white" : "bg-gray-200 hover:bg-gray-100 text-very-dark-blue"} `} to={"/"}> <IoMdArrowBack /> Back</Link>
 
-                <div className={`pt-8 flex md:flex-col gap-[40px] ${isDark ? "text-white " : "text-very-dark-blue "}`}>
-                    <img src={country.flags?.png} alt={`Flag of ${country.name.common}`} className="w-full h-[450px] md:h-[300px] max-w-lg mb-6" />
+                <div className={`pt-8 flex md:flex-col gap-[40px] rounded-xl ${isDark ? "text-white " : "text-very-dark-blue "}`}>
+                    <img src={country.flags?.png} alt={`Flag of ${country.name.common}`} className="w-full rounded-xl h-[450px] md:h-[300px] max-w-lg mb-6" />
                     <div className='flex flex-col gap-10 md:px-8 justify-center my-[20px] md:py-0'>
                         <h1 className="font-bold text-4xl mb-6">{country.name.common}</h1>
                         <div className='flex justify-between gap-[100px] md:flex-col md:justify-normal md:gap-4'>
