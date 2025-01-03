@@ -3,9 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { IoMdArrowBack } from "react-icons/io";
 
 
-const CountryInfo = ({ isDark, countries , isLoading }) => {
+const CountryInfo = ({ isDark, countries  }) => {
     const { countryName } = useParams();
     const country = countries.find(country => country.name.common === countryName);
+
 
     if (!country) return <div>Country not found!</div>;
 

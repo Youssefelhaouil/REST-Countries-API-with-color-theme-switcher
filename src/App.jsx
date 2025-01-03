@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Countries from "./compenents/Countries";
 import CountryInfo from "./compenents/CountryInfo";
 import Header from "./compenents/Header";
+import axios from 'axios';
 
 
 
@@ -10,20 +11,22 @@ import Header from "./compenents/Header";
 function App() {
   const [isDark, setIsDark] = useState(false);
   const url = "https://restcountries.com/v3.1/all";
-  const [countries, setCountries] = useState([]);
+  const [data, setData] = useState([]);
   const [isLoading,setIsLoading]=useState(false)
 
+   const countries=data.filter(countrie=>countrie.name.common !== "Israel")
+   
+
   useEffect(() => {
-    setIsLoading(true); // Start loading
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setCountries(data);
-        setIsLoading(false); // Data has loaded
+    setIsLoading(true); 
+    axios.get(url)
+      .then(res => {
+        setData(res.data);
+        setIsLoading(false); 
       })
       .catch(error => {
         console.error("Error fetching data:", error);
-        setIsLoading(false); // Stop loading in case of error
+        setIsLoading(false); 
       });
   }, []);
 
@@ -42,7 +45,7 @@ function App() {
       <Header isDark={isDark} setIsDark={setIsDark} />
       <Routes>
         <Route path="/" element={<Countries isLoading={isLoading} isDark={isDark} countries={countries} />} />
-        <Route path="/country/:countryName" element={<CountryInfo isLoading={isLoading}  isDark={isDark} countries={countries} />} />
+        <Route path="/country/:countryName" element={<CountryInfo   isDark={isDark} countries={countries} />} />
       </Routes>
     </Router>
   )

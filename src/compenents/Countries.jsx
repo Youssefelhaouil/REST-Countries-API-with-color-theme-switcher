@@ -88,7 +88,7 @@ const Countries = ({ isDark, countries, isLoading }) => {
                     </div>
                 )
             }
-            <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} isDark={isDark} countries={countries} indexOfLastCountry={indexOfLastCountry} currentPage={currentPage}  />
+            <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} isDark={isDark} countries={countries} indexOfLastCountry={indexOfLastCountry}   />
 
 
         </>
