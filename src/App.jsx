@@ -3,31 +3,16 @@ import React, { useState, useEffect } from "react";
 import Countries from "./compenents/Countries";
 import CountryInfo from "./compenents/CountryInfo";
 import Header from "./compenents/Header";
-import axios from 'axios';
-
-
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { countryData } from './App/Data/CountryData';
 function App() {
+  const dispatch=useDispatch();
+  const {country,loading}=useSelector(state=>state.country);
   const [isDark, setIsDark] = useState(false);
-  const url = "https://restcountries.com/v3.1/all";
-  const [data, setData] = useState([]);
-  const [isLoading,setIsLoading]=useState(false)
 
-   const countries=data.filter(countrie=>countrie.name.common !== "Israel")
-   
 
   useEffect(() => {
-    setIsLoading(true); 
-    axios.get(url)
-      .then(res => {
-        setData(res.data);
-        setIsLoading(false); 
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        setIsLoading(false); 
-      });
+    dispatch(countryData())
   }, []);
 
   useEffect(() => {
@@ -44,8 +29,8 @@ function App() {
     <Router>
       <Header isDark={isDark} setIsDark={setIsDark} />
       <Routes>
-        <Route path="/" element={<Countries isLoading={isLoading} isDark={isDark} countries={countries} />} />
-        <Route path="/country/:countryName" element={<CountryInfo   isDark={isDark} countries={countries} />} />
+        <Route path="/" element={<Countries isLoading={loading} isDark={isDark} countries={country} />} />
+        <Route path="/country/:area" element={<CountryInfo   isDark={isDark} countries={country} />} />
       </Routes>
     </Router>
   )

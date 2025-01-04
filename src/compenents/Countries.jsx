@@ -47,7 +47,7 @@ const Countries = ({ isDark, countries, isLoading }) => {
                 searchInput.length > 0 ? (
                     <div className="grid grid-cols-4 md:flex md:flex-wrap px-[80px] md:px-[20px] gap-10 rounded-md pt-10">
                         {filtred.map((country, index) => (
-                            <Link to={`/country/${country.name.common}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
+                            <Link to={`/country/${country.area}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
                                 <img className="h-[200px] w-full rounded-t-md" src={country.flags.png} alt={`Flag of ${country.name.common}`} />
                                 <div className={`${!isDark ? "bg-white hover:bg-gray-100" : "bg-dark-blue hover:bg-opacity-80 text-white"} h-[190px] p-6 w-full rounded-b-md`}>
                                     <h1 className="font-sans font-bold text-[18px] pb-4">{country.name.common}</h1>
@@ -61,13 +61,13 @@ const Countries = ({ isDark, countries, isLoading }) => {
                 ) : optionCountries.length > 0 ? (
                     <div className="grid grid-cols-4 md:flex md:flex-wrap px-[80px] md:px-[20px] gap-10 rounded-md pt-10">
                         {optionCountries.map((country, index) => (
-                            <Link to={`/country/${country.name.common}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
+                            <Link to={`/country/${country.area}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
                                 <img className="h-[200px] w-full rounded-t-md" src={country.flags.png} alt={`Flag of ${country.name.common}`} />
                                 <div className={`${!isDark ? "bg-white hover:bg-gray-100" : "bg-dark-blue hover:bg-opacity-80 text-white"} h-[190px] p-6 w-full rounded-b-md`}>
                                     <h1 className="font-sans font-bold text-[18px] pb-4">{country.name.common}</h1>
                                     <h3 className="font-sans font-light text-[16px] pb-1">Population: <span className="font-semibold">{country.population}</span></h3>
                                     <h3 className="font-sans font-light text-[16px] pb-1">Region: <span className="font-semibold">{country.region}</span></h3>
-                                    <h3 className="font-sans font-light text-[16px] pb-1">Capital: <span className="font-semibold">{country.capital}</span></h3>
+                                    <h3 className="font-sans font-light text-[16px] pb-1">Capital: <span className="font-semibold">{country.capital.join("-")}</span></h3>
                                 </div>
                             </Link>
                         ))}
@@ -75,7 +75,7 @@ const Countries = ({ isDark, countries, isLoading }) => {
                 ) : (
                     <div className="grid grid-cols-4 md:flex md:flex-wrap px-[80px] md:px-[20px] gap-10 rounded-md pt-10">
                         {displayedCountries.map((country, index) => (
-                            <Link to={`/country/${country.name.common}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
+                            <Link to={`/country/${country.area}`} key={index} className="cursor-pointer shadow h-full w-full grid grid-row-[1fr_1fr]">
                                 <img className="h-[200px] w-full rounded-t-md" src={country.flags.png} alt={`Flag of ${country.name.common}`} />
                                 <div className={`${!isDark ? "bg-white hover:bg-gray-100" : "bg-dark-blue hover:bg-opacity-80 text-white"} h-[190px] p-6 w-full rounded-b-md`}>
                                     <h1 className="font-sans font-bold text-[18px] pb-4">{country.name.common}</h1>
